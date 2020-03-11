@@ -87,11 +87,7 @@ class PostgreSql extends AbstractPlatform
      */
     public function convertToPHPValueSQL(AbstractSpatialType $type, $sqlExpr)
     {
-        if ($type instanceof GeographyType) {
-            return sprintf('ST_AsEWKT(%s)', $sqlExpr);
-        }
-
-        return sprintf('ST_AsEWKB(%s)', $sqlExpr);
+        return sprintf('ST_AsEWKT(%s)', $sqlExpr);
     }
 
     /**
