@@ -138,7 +138,11 @@ abstract class AbstractSpatialType extends Type
         if (is_resource($value)) {
             return $this->getSpatialPlatform($platform)->convertBinaryToPHPValue($this, $value);
         } else {
-            return $this->getSpatialPlatform($platform)->convertStringToPHPValue($this, $value);
+            if (ctype_alpha($value[0])) {
+                return $this->getSpatialPlatform($platform)->convertStringToPHPValue($this, $value);
+            } else {
+                return $this->getSpatialPlatform($platform)->convertBinaryToPHPValue($this, $value);
+            }
         }
     }
 
